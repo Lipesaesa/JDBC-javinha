@@ -1,11 +1,10 @@
 public class Categoria {
-    public class Produto {
 
     private int id;
     private String nome;
     private boolean ativo;
     
-    public Produto(String nome, boolean ativo) {
+    public Categoria(String nome, boolean ativo) {
         this.nome = nome;
         this.ativo = ativo;
     }
@@ -27,13 +26,13 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public boolean getativo() {
+    public boolean isAtivo() {
         return ativo;
     }
 
-    public void setativo(boolean ativo) {
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
 }
-}
+
