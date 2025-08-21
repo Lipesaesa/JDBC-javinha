@@ -1,7 +1,3 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 import java.sql.*;
 
@@ -26,23 +22,26 @@ public class ProdutoDAO {
         List<Produto> lista = new ArrayList<>();
         String sql = "SELECT * FROM produtos";
 
-        try(Connection conn = Conexao.conectar();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql)) {
-            
+        try (Connection conn = Conexao.conectar();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)) {
 
-            while (rs.next()) {
-                Produto p = new Produto(rs.getString("nome"),
-                                                    rs.getDouble("preco"));
-            }
-        } catch (SQLException e){
+                while (rs.next()) {
+                    Produto p = new Produto(rs.getString("nome"),
+                                            rs.getDouble("preco"));
+                                            p.setId(rs.getInt("id"));
+                                            lista.add(p);
+                }
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return lista;
     }
+    return lista;
+}
+
+    
     @SuppressWarnings("CallToPrintStackTrace")
     public void atualizar(Produto p) {
-        String sql = "UPDATE produtos SET nome=?, preco=? WHEREid=?";
+        String sql = "UPDATE produtos SET nome=?, preco=? WHERE id=?";
 
         try (Connection conn = Conexao.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql)){

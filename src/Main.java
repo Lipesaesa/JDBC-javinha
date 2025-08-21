@@ -54,20 +54,21 @@ public class Main {
                 case 5:
                     System.out.print("ID da categoria a deletar: ");
                     id = sc.nextInt();
-                    dao.deletar(id);
+                    cdao.deletar(id);
                     break;
 
                     case 6:
-                    System.out.print("ID do categoria: ");
-                    int idCategoria = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Novo nome: ");
-                    nome = sc.nextLine();
-                    System.out.print("Novo preço: ");
-                    preco = sc.nextDouble();
-                    p = new Produto(nome, preco);
-                    p.setId(idCategoria);
-                    dao.atualizar(p);
+                        System.out.print("ID da categoria: ");
+                        int idCategoria = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Novo nome: ");
+                        String nomeCategoria = sc.nextLine();
+                        System.out.print("Ativa? (true/false): ");
+                        boolean ativaCategoria = sc.nextBoolean();
+                        Categoria c = new Categoria(nomeCategoria, ativaCategoria);
+                        c.setId(idCategoria);
+                        cdao.atualizar(c);
+
                     break;
 
                     case 7:
